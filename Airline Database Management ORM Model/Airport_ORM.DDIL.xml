@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dil:root xmlns:dil="http://schemas.orm.net/DIL/DIL" xmlns:dcl="http://schemas.orm.net/DIL/DCIL" xmlns:ddt="http://schemas.orm.net/DIL/DILDT" xmlns:dep="http://schemas.orm.net/DIL/DILEP" xmlns:dms="http://schemas.orm.net/DIL/DILMS" xmlns:dml="http://schemas.orm.net/DIL/DMIL" xmlns:ddl="http://schemas.orm.net/DIL/DDIL">
+	<dms:startTransactionStatement isolationLevel="SERIALIZABLE" accessMode="READ WRITE" />
+	<ddl:schemaDefinition schemaName="ORMModel1" defaultCharacterSet="UTF8" />
+	<dms:setSchemaStatement>
+		<ddt:characterStringLiteral value="ORMMODEL1" />
+	</dms:setSchemaStatement>
+	<ddl:domainDefinition name="City_Id" schema="ORMModel1">
+		<ddt:exactNumeric type="INTEGER" />
+		<ddl:domainConstraintDefinition name="City_Id_Unsigned_Chk">
+			<ddl:checkConstraintDefinition>
+				<dep:comparisonPredicate operator="greaterThanOrEquals">
+					<dep:valueKeyword />
+					<ddt:exactNumericLiteral value="0" />
+				</dep:comparisonPredicate>
+			</ddl:checkConstraintDefinition>
+		</ddl:domainConstraintDefinition>
+	</ddl:domainDefinition>
+	<ddl:domainDefinition name="Airport_Id" schema="ORMModel1">
+		<ddt:exactNumeric type="INTEGER" />
+		<ddl:domainConstraintDefinition name="Airport_Id_Unsigned_Chk">
+			<ddl:checkConstraintDefinition>
+				<dep:comparisonPredicate operator="greaterThanOrEquals">
+					<dep:valueKeyword />
+					<ddt:exactNumericLiteral value="0" />
+				</dep:comparisonPredicate>
+			</ddl:checkConstraintDefinition>
+		</ddl:domainConstraintDefinition>
+	</ddl:domainDefinition>
+	<ddl:domainDefinition name="Airline_Id" schema="ORMModel1">
+		<ddt:exactNumeric type="INTEGER" />
+		<ddl:domainConstraintDefinition name="Airline_Id_Unsigned_Chk">
+			<ddl:checkConstraintDefinition>
+				<dep:comparisonPredicate operator="greaterThanOrEquals">
+					<dep:valueKeyword />
+					<ddt:exactNumericLiteral value="0" />
+				</dep:comparisonPredicate>
+			</ddl:checkConstraintDefinition>
+		</ddl:domainConstraintDefinition>
+	</ddl:domainDefinition>
+	<ddl:domainDefinition name="Employee_Id" schema="ORMModel1">
+		<ddt:exactNumeric type="INTEGER" />
+		<ddl:domainConstraintDefinition name="Employee_Id_Unsigned_Chk">
+			<ddl:checkConstraintDefinition>
+				<dep:comparisonPredicate operator="greaterThanOrEquals">
+					<dep:valueKeyword />
+					<ddt:exactNumericLiteral value="0" />
+				</dep:comparisonPredicate>
+			</ddl:checkConstraintDefinition>
+		</ddl:domainConstraintDefinition>
+	</ddl:domainDefinition>
+	<ddl:domainDefinition name="Flight_Id" schema="ORMModel1">
+		<ddt:exactNumeric type="INTEGER" />
+		<ddl:domainConstraintDefinition name="Flight_Id_Unsigned_Chk">
+			<ddl:checkConstraintDefinition>
+				<dep:comparisonPredicate operator="greaterThanOrEquals">
+					<dep:valueKeyword />
+					<ddt:exactNumericLiteral value="0" />
+				</dep:comparisonPredicate>
+			</ddl:checkConstraintDefinition>
+		</ddl:domainConstraintDefinition>
+	</ddl:domainDefinition>
+	<ddl:domainDefinition name="Person_Id" schema="ORMModel1">
+		<ddt:exactNumeric type="INTEGER" />
+		<ddl:domainConstraintDefinition name="Person_Id_Unsigned_Chk">
+			<ddl:checkConstraintDefinition>
+				<dep:comparisonPredicate operator="greaterThanOrEquals">
+					<dep:valueKeyword />
+					<ddt:exactNumericLiteral value="0" />
+				</dep:comparisonPredicate>
+			</ddl:checkConstraintDefinition>
+		</ddl:domainConstraintDefinition>
+	</ddl:domainDefinition>
+	<ddl:tableDefinition name="City" schema="ORMModel1">
+		<ddl:columnDefinition name="cityId">
+			<ddt:domain name="City_Id" schema="ORMModel1" />
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="name">
+			<ddt:characterString type="CHARACTER" length="20" />
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="airportId">
+			<ddt:domain name="Airport_Id" schema="ORMModel1" />
+		</ddl:columnDefinition>
+		<ddl:tableConstraintDefinition name="City_PK">
+			<ddl:uniqueConstraintDefinition type="PRIMARY KEY">
+				<dep:simpleColumnReference name="cityId" />
+			</ddl:uniqueConstraintDefinition>
+		</ddl:tableConstraintDefinition>
+	</ddl:tableDefinition>
+	<ddl:tableDefinition name="Airport" schema="ORMModel1">
+		<ddl:columnDefinition name="airportId">
+			<ddt:domain name="Airport_Id" schema="ORMModel1" />
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="name">
+			<ddt:characterString type="CHARACTER" length="20" />
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="airlineId">
+			<ddt:domain name="Airline_Id" schema="ORMModel1" />
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="employeeId">
+			<ddt:domain name="Employee_Id" schema="ORMModel1" />
+		</ddl:columnDefinition>
+		<ddl:tableConstraintDefinition name="Airport_PK">
+			<ddl:uniqueConstraintDefinition type="PRIMARY KEY">
+				<dep:simpleColumnReference name="airportId" />
+			</ddl:uniqueConstraintDefinition>
+		</ddl:tableConstraintDefinition>
+	</ddl:tableDefinition>
+	<ddl:tableDefinition name="Airline" schema="ORMModel1">
+		<ddl:columnDefinition name="airlineId">
+			<ddt:domain name="Airline_Id" schema="ORMModel1" />
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="name">
+			<ddt:characterString type="CHARACTER" length="20" />
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="aircraftModelId">
+			<ddt:exactNumeric type="INTEGER" />
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="flightId">
+			<ddt:domain name="Flight_Id" schema="ORMModel1" />
+		</ddl:columnDefinition>
+		<ddl:tableConstraintDefinition name="Airline_PK">
+			<ddl:uniqueConstraintDefinition type="PRIMARY KEY">
+				<dep:simpleColumnReference name="airlineId" />
+			</ddl:uniqueConstraintDefinition>
+		</ddl:tableConstraintDefinition>
+	</ddl:tableDefinition>
+	<ddl:tableDefinition name="Employee" schema="ORMModel1">
+		<ddl:columnDefinition name="employeeId">
+			<ddt:domain name="Employee_Id" schema="ORMModel1" />
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="personId">
+			<ddt:domain name="Person_Id" schema="ORMModel1" />
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="passengerNr">
+			<ddt:exactNumeric type="INTEGER" />
+		</ddl:columnDefinition>
+		<ddl:tableConstraintDefinition name="Employee_PK">
+			<ddl:uniqueConstraintDefinition type="PRIMARY KEY">
+				<dep:simpleColumnReference name="employeeId" />
+			</ddl:uniqueConstraintDefinition>
+		</ddl:tableConstraintDefinition>
+		<ddl:tableConstraintDefinition name="Employee_UC">
+			<ddl:uniqueConstraintDefinition type="UNIQUE">
+				<dep:simpleColumnReference name="personId" />
+			</ddl:uniqueConstraintDefinition>
+		</ddl:tableConstraintDefinition>
+	</ddl:tableDefinition>
+	<ddl:tableDefinition name="Flight" schema="ORMModel1">
+		<ddl:columnDefinition name="flightId">
+			<ddt:domain name="Flight_Id" schema="ORMModel1" />
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="passengerNr">
+			<ddt:exactNumeric type="INTEGER" />
+		</ddl:columnDefinition>
+		<ddl:tableConstraintDefinition name="Flight_PK">
+			<ddl:uniqueConstraintDefinition type="PRIMARY KEY">
+				<dep:simpleColumnReference name="flightId" />
+			</ddl:uniqueConstraintDefinition>
+		</ddl:tableConstraintDefinition>
+	</ddl:tableDefinition>
+	<ddl:tableDefinition name="Passenger" schema="ORMModel1">
+		<ddl:columnDefinition name="passengerNr">
+			<ddt:exactNumeric type="INTEGER" />
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="personId">
+			<ddt:domain name="Person_Id" schema="ORMModel1" />
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="booksTicketNr">
+			<ddt:exactNumeric type="INTEGER" />
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="cancelsTicketNr">
+			<ddt:exactNumeric type="INTEGER" />
+		</ddl:columnDefinition>
+		<ddl:tableConstraintDefinition name="Passenger_PK">
+			<ddl:uniqueConstraintDefinition type="PRIMARY KEY">
+				<dep:simpleColumnReference name="passengerNr" />
+			</ddl:uniqueConstraintDefinition>
+		</ddl:tableConstraintDefinition>
+		<ddl:tableConstraintDefinition name="Passenger_UC">
+			<ddl:uniqueConstraintDefinition type="UNIQUE">
+				<dep:simpleColumnReference name="personId" />
+			</ddl:uniqueConstraintDefinition>
+		</ddl:tableConstraintDefinition>
+	</ddl:tableDefinition>
+	<ddl:tableDefinition name="Ticket" schema="ORMModel1">
+		<ddl:columnDefinition name="dateYmd">
+			<ddt:time type="DATETIME" />
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="passengerNr">
+			<ddt:exactNumeric type="INTEGER" />
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="ticketNr">
+			<ddt:exactNumeric type="INTEGER" />
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:tableConstraintDefinition name="Ticket_PK">
+			<ddl:uniqueConstraintDefinition type="PRIMARY KEY">
+				<dep:simpleColumnReference name="passengerNr" />
+				<dep:simpleColumnReference name="ticketNr" />
+				<dep:simpleColumnReference name="dateYmd" />
+			</ddl:uniqueConstraintDefinition>
+		</ddl:tableConstraintDefinition>
+	</ddl:tableDefinition>
+	<ddl:tableDefinition name="Person" schema="ORMModel1">
+		<ddl:columnDefinition name="personId">
+			<ddt:domain name="Person_Id" schema="ORMModel1" />
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:columnDefinition name="name">
+			<ddt:characterString type="CHARACTER" length="20" />
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:tableConstraintDefinition name="Person_PK">
+			<ddl:uniqueConstraintDefinition type="PRIMARY KEY">
+				<dep:simpleColumnReference name="personId" />
+			</ddl:uniqueConstraintDefinition>
+		</ddl:tableConstraintDefinition>
+	</ddl:tableDefinition>
+	<ddl:tableDefinition name="AircraftModel" schema="ORMModel1">
+		<ddl:columnDefinition name="aircraftModelId">
+			<ddt:exactNumeric type="INTEGER" />
+			<ddl:identityColumnSpecification type="ALWAYS">
+				<ddl:sequenceGeneratorStartWithOption>
+					<ddt:exactNumericLiteral value="1" />
+				</ddl:sequenceGeneratorStartWithOption>
+				<ddl:sequenceGeneratorIncrementByOption>
+					<ddt:exactNumericLiteral value="1" />
+				</ddl:sequenceGeneratorIncrementByOption>
+			</ddl:identityColumnSpecification>
+			<ddl:columnConstraintDefinition>
+				<ddl:notNullKeyword />
+			</ddl:columnConstraintDefinition>
+		</ddl:columnDefinition>
+		<ddl:tableConstraintDefinition name="AircraftModel_PK">
+			<ddl:uniqueConstraintDefinition type="PRIMARY KEY">
+				<dep:simpleColumnReference name="aircraftModelId" />
+			</ddl:uniqueConstraintDefinition>
+		</ddl:tableConstraintDefinition>
+	</ddl:tableDefinition>
+	<ddl:alterTableStatement name="City" schema="ORMModel1">
+		<ddl:addTableConstraintDefinition name="City_FK">
+			<ddl:referentialConstraintDefinition>
+				<dep:simpleColumnReference name="airportId" />
+				<ddl:referencesSpecification name="Airport" onDelete="RESTRICT" onUpdate="RESTRICT" schema="ORMModel1">
+					<dep:simpleColumnReference name="airportId" />
+				</ddl:referencesSpecification>
+			</ddl:referentialConstraintDefinition>
+		</ddl:addTableConstraintDefinition>
+	</ddl:alterTableStatement>
+	<ddl:alterTableStatement name="Airport" schema="ORMModel1">
+		<ddl:addTableConstraintDefinition name="Airport_FK1">
+			<ddl:referentialConstraintDefinition>
+				<dep:simpleColumnReference name="airlineId" />
+				<ddl:referencesSpecification name="Airline" onDelete="RESTRICT" onUpdate="RESTRICT" schema="ORMModel1">
+					<dep:simpleColumnReference name="airlineId" />
+				</ddl:referencesSpecification>
+			</ddl:referentialConstraintDefinition>
+		</ddl:addTableConstraintDefinition>
+	</ddl:alterTableStatement>
+	<ddl:alterTableStatement name="Airport" schema="ORMModel1">
+		<ddl:addTableConstraintDefinition name="Airport_FK2">
+			<ddl:referentialConstraintDefinition>
+				<dep:simpleColumnReference name="employeeId" />
+				<ddl:referencesSpecification name="Employee" onDelete="RESTRICT" onUpdate="RESTRICT" schema="ORMModel1">
+					<dep:simpleColumnReference name="employeeId" />
+				</ddl:referencesSpecification>
+			</ddl:referentialConstraintDefinition>
+		</ddl:addTableConstraintDefinition>
+	</ddl:alterTableStatement>
+	<ddl:alterTableStatement name="Airline" schema="ORMModel1">
+		<ddl:addTableConstraintDefinition name="Airline_FK1">
+			<ddl:referentialConstraintDefinition>
+				<dep:simpleColumnReference name="flightId" />
+				<ddl:referencesSpecification name="Flight" onDelete="RESTRICT" onUpdate="RESTRICT" schema="ORMModel1">
+					<dep:simpleColumnReference name="flightId" />
+				</ddl:referencesSpecification>
+			</ddl:referentialConstraintDefinition>
+		</ddl:addTableConstraintDefinition>
+	</ddl:alterTableStatement>
+	<ddl:alterTableStatement name="Airline" schema="ORMModel1">
+		<ddl:addTableConstraintDefinition name="Airline_FK2">
+			<ddl:referentialConstraintDefinition>
+				<dep:simpleColumnReference name="aircraftModelId" />
+				<ddl:referencesSpecification name="AircraftModel" onDelete="RESTRICT" onUpdate="RESTRICT" schema="ORMModel1">
+					<dep:simpleColumnReference name="aircraftModelId" />
+				</ddl:referencesSpecification>
+			</ddl:referentialConstraintDefinition>
+		</ddl:addTableConstraintDefinition>
+	</ddl:alterTableStatement>
+	<ddl:alterTableStatement name="Employee" schema="ORMModel1">
+		<ddl:addTableConstraintDefinition name="Employee_FK1">
+			<ddl:referentialConstraintDefinition>
+				<dep:simpleColumnReference name="passengerNr" />
+				<ddl:referencesSpecification name="Passenger" onDelete="RESTRICT" onUpdate="RESTRICT" schema="ORMModel1">
+					<dep:simpleColumnReference name="passengerNr" />
+				</ddl:referencesSpecification>
+			</ddl:referentialConstraintDefinition>
+		</ddl:addTableConstraintDefinition>
+	</ddl:alterTableStatement>
+	<ddl:alterTableStatement name="Employee" schema="ORMModel1">
+		<ddl:addTableConstraintDefinition name="Employee_FK2">
+			<ddl:referentialConstraintDefinition>
+				<dep:simpleColumnReference name="personId" />
+				<ddl:referencesSpecification name="Person" onDelete="RESTRICT" onUpdate="RESTRICT" schema="ORMModel1">
+					<dep:simpleColumnReference name="personId" />
+				</ddl:referencesSpecification>
+			</ddl:referentialConstraintDefinition>
+		</ddl:addTableConstraintDefinition>
+	</ddl:alterTableStatement>
+	<ddl:alterTableStatement name="Flight" schema="ORMModel1">
+		<ddl:addTableConstraintDefinition name="Flight_FK">
+			<ddl:referentialConstraintDefinition>
+				<dep:simpleColumnReference name="passengerNr" />
+				<ddl:referencesSpecification name="Passenger" onDelete="RESTRICT" onUpdate="RESTRICT" schema="ORMModel1">
+					<dep:simpleColumnReference name="passengerNr" />
+				</ddl:referencesSpecification>
+			</ddl:referentialConstraintDefinition>
+		</ddl:addTableConstraintDefinition>
+	</ddl:alterTableStatement>
+	<ddl:alterTableStatement name="Passenger" schema="ORMModel1">
+		<ddl:addTableConstraintDefinition name="Passenger_FK">
+			<ddl:referentialConstraintDefinition>
+				<dep:simpleColumnReference name="personId" />
+				<ddl:referencesSpecification name="Person" onDelete="RESTRICT" onUpdate="RESTRICT" schema="ORMModel1">
+					<dep:simpleColumnReference name="personId" />
+				</ddl:referencesSpecification>
+			</ddl:referentialConstraintDefinition>
+		</ddl:addTableConstraintDefinition>
+	</ddl:alterTableStatement>
+	<ddl:alterTableStatement name="Ticket" schema="ORMModel1">
+		<ddl:addTableConstraintDefinition name="Ticket_FK">
+			<ddl:referentialConstraintDefinition>
+				<dep:simpleColumnReference name="passengerNr" />
+				<ddl:referencesSpecification name="Passenger" onDelete="RESTRICT" onUpdate="RESTRICT" schema="ORMModel1">
+					<dep:simpleColumnReference name="passengerNr" />
+				</ddl:referencesSpecification>
+			</ddl:referentialConstraintDefinition>
+		</ddl:addTableConstraintDefinition>
+	</ddl:alterTableStatement>
+	<dms:commitStatement />
+</dil:root>

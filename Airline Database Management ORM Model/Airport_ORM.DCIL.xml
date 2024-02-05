@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dcl:schema name="ORMModel1" xmlns:dcl="http://schemas.orm.net/DIL/DCIL" xmlns:dil="http://schemas.orm.net/DIL/DIL" xmlns:ddt="http://schemas.orm.net/DIL/DILDT" xmlns:dep="http://schemas.orm.net/DIL/DILEP" xmlns:dml="http://schemas.orm.net/DIL/DMIL" xmlns:ddl="http://schemas.orm.net/DIL/DDIL">
+	<dcl:domain name="City_Id">
+		<dcl:predefinedDataType name="INTEGER" />
+		<dcl:checkConstraint name="City_Id_Unsigned_Chk">
+			<dep:comparisonPredicate operator="greaterThanOrEquals">
+				<dep:valueKeyword />
+				<ddt:exactNumericLiteral value="0" />
+			</dep:comparisonPredicate>
+		</dcl:checkConstraint>
+	</dcl:domain>
+	<dcl:domain name="Airport_Id">
+		<dcl:predefinedDataType name="INTEGER" />
+		<dcl:checkConstraint name="Airport_Id_Unsigned_Chk">
+			<dep:comparisonPredicate operator="greaterThanOrEquals">
+				<dep:valueKeyword />
+				<ddt:exactNumericLiteral value="0" />
+			</dep:comparisonPredicate>
+		</dcl:checkConstraint>
+	</dcl:domain>
+	<dcl:domain name="Airline_Id">
+		<dcl:predefinedDataType name="INTEGER" />
+		<dcl:checkConstraint name="Airline_Id_Unsigned_Chk">
+			<dep:comparisonPredicate operator="greaterThanOrEquals">
+				<dep:valueKeyword />
+				<ddt:exactNumericLiteral value="0" />
+			</dep:comparisonPredicate>
+		</dcl:checkConstraint>
+	</dcl:domain>
+	<dcl:domain name="Employee_Id">
+		<dcl:predefinedDataType name="INTEGER" />
+		<dcl:checkConstraint name="Employee_Id_Unsigned_Chk">
+			<dep:comparisonPredicate operator="greaterThanOrEquals">
+				<dep:valueKeyword />
+				<ddt:exactNumericLiteral value="0" />
+			</dep:comparisonPredicate>
+		</dcl:checkConstraint>
+	</dcl:domain>
+	<dcl:domain name="Flight_Id">
+		<dcl:predefinedDataType name="INTEGER" />
+		<dcl:checkConstraint name="Flight_Id_Unsigned_Chk">
+			<dep:comparisonPredicate operator="greaterThanOrEquals">
+				<dep:valueKeyword />
+				<ddt:exactNumericLiteral value="0" />
+			</dep:comparisonPredicate>
+		</dcl:checkConstraint>
+	</dcl:domain>
+	<dcl:domain name="Person_Id">
+		<dcl:predefinedDataType name="INTEGER" />
+		<dcl:checkConstraint name="Person_Id_Unsigned_Chk">
+			<dep:comparisonPredicate operator="greaterThanOrEquals">
+				<dep:valueKeyword />
+				<ddt:exactNumericLiteral value="0" />
+			</dep:comparisonPredicate>
+		</dcl:checkConstraint>
+	</dcl:domain>
+	<dcl:table name="City">
+		<dcl:column name="cityId" isNullable="false" isIdentity="false">
+			<dcl:domainRef name="City_Id" />
+		</dcl:column>
+		<dcl:column name="name" isNullable="false" isIdentity="false">
+			<dcl:predefinedDataType name="CHARACTER" length="20" />
+		</dcl:column>
+		<dcl:column name="airportId" isNullable="true" isIdentity="false">
+			<dcl:domainRef name="Airport_Id" />
+		</dcl:column>
+		<dcl:uniquenessConstraint name="City_PK" isPrimary="true">
+			<dcl:columnRef name="cityId" />
+		</dcl:uniquenessConstraint>
+		<dcl:referenceConstraint name="City_FK" targetTable="Airport">
+			<dcl:columnRef sourceName="airportId" targetName="airportId" />
+		</dcl:referenceConstraint>
+	</dcl:table>
+	<dcl:table name="Airport">
+		<dcl:column name="airportId" isNullable="false" isIdentity="false">
+			<dcl:domainRef name="Airport_Id" />
+		</dcl:column>
+		<dcl:column name="name" isNullable="false" isIdentity="false">
+			<dcl:predefinedDataType name="CHARACTER" length="20" />
+		</dcl:column>
+		<dcl:column name="airlineId" isNullable="true" isIdentity="false">
+			<dcl:domainRef name="Airline_Id" />
+		</dcl:column>
+		<dcl:column name="employeeId" isNullable="true" isIdentity="false">
+			<dcl:domainRef name="Employee_Id" />
+		</dcl:column>
+		<dcl:uniquenessConstraint name="Airport_PK" isPrimary="true">
+			<dcl:columnRef name="airportId" />
+		</dcl:uniquenessConstraint>
+		<dcl:referenceConstraint name="Airport_FK1" targetTable="Airline">
+			<dcl:columnRef sourceName="airlineId" targetName="airlineId" />
+		</dcl:referenceConstraint>
+		<dcl:referenceConstraint name="Airport_FK2" targetTable="Employee">
+			<dcl:columnRef sourceName="employeeId" targetName="employeeId" />
+		</dcl:referenceConstraint>
+	</dcl:table>
+	<dcl:table name="Airline">
+		<dcl:column name="airlineId" isNullable="false" isIdentity="false">
+			<dcl:domainRef name="Airline_Id" />
+		</dcl:column>
+		<dcl:column name="name" isNullable="false" isIdentity="false">
+			<dcl:predefinedDataType name="CHARACTER" length="20" />
+		</dcl:column>
+		<dcl:column name="aircraftModelId" isNullable="true" isIdentity="false">
+			<dcl:predefinedDataType name="INTEGER" />
+		</dcl:column>
+		<dcl:column name="flightId" isNullable="true" isIdentity="false">
+			<dcl:domainRef name="Flight_Id" />
+		</dcl:column>
+		<dcl:uniquenessConstraint name="Airline_PK" isPrimary="true">
+			<dcl:columnRef name="airlineId" />
+		</dcl:uniquenessConstraint>
+		<dcl:referenceConstraint name="Airline_FK1" targetTable="Flight">
+			<dcl:columnRef sourceName="flightId" targetName="flightId" />
+		</dcl:referenceConstraint>
+		<dcl:referenceConstraint name="Airline_FK2" targetTable="AircraftModel">
+			<dcl:columnRef sourceName="aircraftModelId" targetName="aircraftModelId" />
+		</dcl:referenceConstraint>
+	</dcl:table>
+	<dcl:table name="Employee">
+		<dcl:column name="employeeId" isNullable="false" isIdentity="false">
+			<dcl:domainRef name="Employee_Id" />
+		</dcl:column>
+		<dcl:column name="personId" isNullable="false" isIdentity="false">
+			<dcl:domainRef name="Person_Id" />
+		</dcl:column>
+		<dcl:column name="passengerNr" isNullable="true" isIdentity="false">
+			<dcl:predefinedDataType name="INTEGER" />
+		</dcl:column>
+		<dcl:uniquenessConstraint name="Employee_PK" isPrimary="true">
+			<dcl:columnRef name="employeeId" />
+		</dcl:uniquenessConstraint>
+		<dcl:uniquenessConstraint name="Employee_UC" isPrimary="false">
+			<dcl:columnRef name="personId" />
+		</dcl:uniquenessConstraint>
+		<dcl:referenceConstraint name="Employee_FK1" targetTable="Passenger">
+			<dcl:columnRef sourceName="passengerNr" targetName="passengerNr" />
+		</dcl:referenceConstraint>
+		<dcl:referenceConstraint name="Employee_FK2" targetTable="Person">
+			<dcl:columnRef sourceName="personId" targetName="personId" />
+		</dcl:referenceConstraint>
+	</dcl:table>
+	<dcl:table name="Flight">
+		<dcl:column name="flightId" isNullable="false" isIdentity="false">
+			<dcl:domainRef name="Flight_Id" />
+		</dcl:column>
+		<dcl:column name="passengerNr" isNullable="true" isIdentity="false">
+			<dcl:predefinedDataType name="INTEGER" />
+		</dcl:column>
+		<dcl:uniquenessConstraint name="Flight_PK" isPrimary="true">
+			<dcl:columnRef name="flightId" />
+		</dcl:uniquenessConstraint>
+		<dcl:referenceConstraint name="Flight_FK" targetTable="Passenger">
+			<dcl:columnRef sourceName="passengerNr" targetName="passengerNr" />
+		</dcl:referenceConstraint>
+	</dcl:table>
+	<dcl:table name="Passenger">
+		<dcl:column name="passengerNr" isNullable="false" isIdentity="false">
+			<dcl:predefinedDataType name="INTEGER" />
+		</dcl:column>
+		<dcl:column name="personId" isNullable="false" isIdentity="false">
+			<dcl:domainRef name="Person_Id" />
+		</dcl:column>
+		<dcl:column name="booksTicketNr" isNullable="true" isIdentity="false">
+			<dcl:predefinedDataType name="INTEGER" />
+		</dcl:column>
+		<dcl:column name="cancelsTicketNr" isNullable="true" isIdentity="false">
+			<dcl:predefinedDataType name="INTEGER" />
+		</dcl:column>
+		<dcl:uniquenessConstraint name="Passenger_PK" isPrimary="true">
+			<dcl:columnRef name="passengerNr" />
+		</dcl:uniquenessConstraint>
+		<dcl:uniquenessConstraint name="Passenger_UC" isPrimary="false">
+			<dcl:columnRef name="personId" />
+		</dcl:uniquenessConstraint>
+		<dcl:referenceConstraint name="Passenger_FK" targetTable="Person">
+			<dcl:columnRef sourceName="personId" targetName="personId" />
+		</dcl:referenceConstraint>
+	</dcl:table>
+	<dcl:table name="Ticket">
+		<dcl:column name="dateYmd" isNullable="false" isIdentity="false">
+			<dcl:predefinedDataType name="DATETIME" />
+		</dcl:column>
+		<dcl:column name="passengerNr" isNullable="false" isIdentity="false">
+			<dcl:predefinedDataType name="INTEGER" />
+		</dcl:column>
+		<dcl:column name="ticketNr" isNullable="false" isIdentity="false">
+			<dcl:predefinedDataType name="INTEGER" />
+		</dcl:column>
+		<dcl:uniquenessConstraint name="Ticket_PK" isPrimary="true">
+			<dcl:columnRef name="passengerNr" />
+			<dcl:columnRef name="ticketNr" />
+			<dcl:columnRef name="dateYmd" />
+		</dcl:uniquenessConstraint>
+		<dcl:referenceConstraint name="Ticket_FK" targetTable="Passenger">
+			<dcl:columnRef sourceName="passengerNr" targetName="passengerNr" />
+		</dcl:referenceConstraint>
+	</dcl:table>
+	<dcl:table name="Person">
+		<dcl:column name="personId" isNullable="false" isIdentity="false">
+			<dcl:domainRef name="Person_Id" />
+		</dcl:column>
+		<dcl:column name="name" isNullable="false" isIdentity="false">
+			<dcl:predefinedDataType name="CHARACTER" length="20" />
+		</dcl:column>
+		<dcl:uniquenessConstraint name="Person_PK" isPrimary="true">
+			<dcl:columnRef name="personId" />
+		</dcl:uniquenessConstraint>
+	</dcl:table>
+	<dcl:table name="AircraftModel">
+		<dcl:column name="aircraftModelId" isNullable="false" isIdentity="true">
+			<dcl:predefinedDataType name="INTEGER" />
+		</dcl:column>
+		<dcl:uniquenessConstraint name="AircraftModel_PK" isPrimary="true">
+			<dcl:columnRef name="aircraftModelId" />
+		</dcl:uniquenessConstraint>
+	</dcl:table>
+</dcl:schema>

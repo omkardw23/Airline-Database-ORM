@@ -1,0 +1,95 @@
+
+Flight
+
+LT1001{"flightID": "LT1001","source": "John F. Kennedy Airport","destination": "Houston Airport","startTime": "08:00:00","endTime": "13:05:00","date": "2022-12-26","airline": {"name": "United Airlines","mod...
+LT3354{"flightID": "LT3354","source": "Virgina Airport","destination": "Michigan Airport","startTime": "09:00:00","endTime": "10:05:00","date": "2022-12-26","airline": {"name": "United Airlines","model": "7...
+LT5990{"flightID": "LT5990","source": "Los Angeles Airport","destination": "San Diego Airport","startTime": "09:00:00","endTime": "9:30:00","date": "2022-12-30","airline": {"name": "United Airlines","model"...
+TT4888{"flightID": "TT4888","source": "Las Vegas Airport","destination": "Seattle Airport","startTime": "10:00:00","endTime": "12:30:00","date": "2022-01-05","airline": {"name": "Luftansa","model": "Boeing-...
+UA2232{"flightID": "UA2232","source": "San Francisco Airport","destination": "Seattle Airport","startTime": "15:00:00","endTime": "18:00:00","date": "2022-01-05","airline": {"name": "Fly Emirates","model": ...
+
+_________________________________________________________________________________
+Flyer
+
+{
+  "flyerID": "00000005",
+  "firstname": "harvey",
+  "lastname": "spector",
+  "flightID": "LT1001",
+  "flyingAs": "Flight Attendant"
+}
+
+
+
+
+00000001{"flyerID": "00000001","firstname": "jonathon","lastname": "pierce","flightID": "UA2232","flyingAs": "Pilot"}
+00000005{"flyerID": "00000005","firstname": "harvey","lastname": "spector","flightID": "LT1001","flyingAs": "Flight Attendant"}
+10000001{"flyerID": "10000001","firstname": "omkar","lastname": "watvisave","flightID": "LT5990","flyingAs": "Passenger"}
+10000002{"flyerID": "10000002","firstname": "rahul","lastname": "dev","flightID": "LT3354","flyingAs": "Passenger"}
+10000003{"flyerID": "10000003","firstname": "thomas","lastname": "shelby","flightID": "LT3354","flyingAs": "Passenger"}
+10000004{"flyerID": "10000004","firstname": "arthur","lastname": "shelby","flightID": "TT4888","flyingAs": "Passenger"}
+
+____________________________________________________________________________________
+Ticket
+
+{"ticketID": "AS56638","flightID": "TT4888","flyerID": "10000004","fare": "60"}
+
+
+___________________________________________________________________________________
+Airport
+
+HOU{"airportID": "HOU","name": "Houston Airports","city": "Houston, Texas"}
+JFK{"airportID": "JFK","name": "John F. Kennedy Airport","city": "New York City, New York"}
+LAS{"airportID": "LAS","name": "Las Vegas Airport","city": "Las Vegas, Nevada"}
+LAX{"airportID": "LAX","name": "Los Angeles Airport","city": "Los Angeles, CA"}
+ORD{"airportID": "ORD","name": "O'Hare International Airport","city": "Chicago, Michigan"}
+RIC{"airportID": "RIC","name": "Richmond International Airport","city": "Richmond, Virginia"}
+SFO{"airportID": "SFO","name": "San Francisco Airport","city": "San Francisco, CA"}SFO
+
+
+______________________________________________________________________________________
+
+create dataset on Flight;
+create dataset on Airport;
+create dataset on Ticket;
+create dataset on Flyer;
+connect link Local;
+
+______________________________________________________________________________________
+
+CREATE PRIMARY INDEX ON Flight;
+CREATE PRIMARY INDEX ON Airport;
+CREATE PRIMARY INDEX ON Ticket;
+CREATE PRIMARY INDEX ON Flyer;
+
+
+
+
+
+_____________________________________________________________________________________
+Some queries
+first
+
+FROM Ticket as t, Flyer as f
+WHERE t.flyerID = f.flyerID
+SELECT t.fare, f.firstname, f.lastname
+ORDER BY t.fare DESC;
+
+
+second
+
+SELECT f.flightID, f.source, f.endTime 
+FROM Flight as f
+WHERE f.destination = "SFO";
+
+
+third
+
+SELECT f.firstname, f.flyingAs ,ft.airline.name
+FROM Flight as ft JOIN Flyer as f ON (ft.flightID = f.flightID)
+WHERE f.flyingAs = "Pilot" OR f.flyingAs = "Flight Attendant";
+
+
+
+
+
+
